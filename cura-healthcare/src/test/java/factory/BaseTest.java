@@ -1,5 +1,5 @@
 package factory;
-
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,9 +13,13 @@ public abstract class BaseTest {
 
     @BeforeMethod
     public void setUp(){
+        String headless = System.getProperty("headless", "false");
+
+        WebDriverManager.firefoxdriver().setup();
         FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("--headless");
-      //  options.addArguments("--start-fullscreen");
+        if (headless.equals("true")) {
+            options.addArguments("--headless");
+        }
         driver = new FirefoxDriver(options);
         driver.manage().window().setSize(new Dimension(1920,1080));
     }
