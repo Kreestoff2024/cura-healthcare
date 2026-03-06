@@ -19,14 +19,11 @@ public abstract class BaseTest {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
+        options.setBinary("/usr/bin/chromium-browser");
 
-        String headless = System.getProperty("headless", "true");
-
-        if ("true".equalsIgnoreCase(headless)) {
-            options.addArguments("--headless=new");
-        }
 
         options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
         options.addArguments("--remote-allow-origins=*");
