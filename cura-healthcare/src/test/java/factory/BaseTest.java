@@ -22,4 +22,8 @@ public class BaseTest {
             driver.quit();
         }
     }
+
+    public void navigateTo(String url) {
+        driver.get(url);
+    }
 }
