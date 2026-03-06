@@ -19,7 +19,7 @@ public abstract class BaseTest {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-        options.setBinary("/usr/bin/chromium-browser");
+        options.setBinary("/snap/bin/chromium");
 
 
         options.addArguments("--no-sandbox");
