@@ -1,48 +1,25 @@
 package factory;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterMethod;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
-import java.time.Duration;
-
-public abstract class BaseTest {
+public class BaseTest {
 
     protected WebDriver driver;
 
-    @BeforeMethod
     public void setUp() {
-
-        WebDriverManager.chromedriver().setup();
-
-        ChromeOptions options = new ChromeOptions();
-        options.setBinary("/snap/bin/chromium");
-
-
-        options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--remote-allow-origins=*");
+        FirefoxOptions options = new FirefoxOptions();
+        options.setHeadless(true);
         options.addArguments("--window-size=1920,1080");
+        System.setProperty("webdriver.gecko.driver", "/snap/bin/geckodriver");
 
-        driver = new ChromeDriver(options);
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        driver = new FirefoxDriver(options);
     }
 
-    @AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
-    }
-
-    protected void navigateTo(String url) {
-        driver.get(url);
     }
 }
