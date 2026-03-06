@@ -2,7 +2,7 @@
 <suite name="Test Suite">
     <test name="Cura Tests">
         <packages>
-            <package name="org.eni.tests"/>
+            <package name="testcases"/>
         </packages>
     </test>
 </suite>
