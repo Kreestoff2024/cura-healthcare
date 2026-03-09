@@ -14,7 +14,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.gecko.driver", "/snap/bin/geckodriver");
+        System.setProperty("webdriver.gecko.driver", "/home/christophe/.cache/selenium/geckodriver/linux64/0.36.0//geckodriver");
         FirefoxOptions options = new FirefoxOptions();
         options.addArguments("--headless");
         options.addArguments("--window-size=1920,1080");
